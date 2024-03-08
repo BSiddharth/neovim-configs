@@ -19,6 +19,7 @@ Set all non-plugin specific options for neovim here
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Don't show the mode, since it's already in status line
