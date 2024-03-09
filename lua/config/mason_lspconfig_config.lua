@@ -1,5 +1,6 @@
 local opts = {
 	-- only lsp server go here, formatter are handled by conform and linter not needed for now but use nvim-linter when required
+	-- this plugin uses the lspconfig server names in the APIs it exposes - not mason.nvim package names
 	ensure_installed = { "lua_ls", "pyright", "clangd" },
 }
 
@@ -10,7 +11,9 @@ require("mason-lspconfig").setup_handlers({
 	-- and will be called for each installed server that doesn't have
 	-- a dedicated handler.
 	function(server_name) -- default handler (optional)
+		-- completion capabilities
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		-- folding capabilities by ufo
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
 			lineFoldingOnly = true
