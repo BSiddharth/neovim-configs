@@ -8,6 +8,6 @@ require('bufferline').setup({
 				text_align = "left",
 				separator = false
 			}
-		}
+		},
 	}
 })

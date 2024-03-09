@@ -213,6 +213,7 @@ require("lazy").setup(
 			end
 		},
 
+		-- get fancy comments like  TODO: Do what now?
 		{
 			"folke/todo-comments.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
@@ -248,6 +249,22 @@ require("lazy").setup(
 			'mrcjkb/rustaceanvim',
 			version = '^4', -- Recommended
 			ft = { 'rust' },
+		},
+
+		-- notification manager
+		{
+			"rcarriga/nvim-notify",
+			config = function()
+				vim.notify = require("notify")
+			end
+		},
+
+		-- integrate git signs in the buffer
+		{
+			"lewis6991/gitsigns.nvim",
+			config = function()
+				require('gitsigns').setup()
+			end
 		}
 	},
 
