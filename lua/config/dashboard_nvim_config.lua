@@ -71,9 +71,18 @@ require("dashboard").setup({
 				group = "DashboardShortCut",
 				key = "c",
 				action = function()
-					vim.cmd("tabnew" .. " " .. vim.fn.stdpath("config") .. "/init.lua")
-					vim.cmd("tcd" .. " " .. vim.fn.stdpath("config")) -- so that telescope picks correct working directory
-					require("dashboard"):restore_options() -- to allow lua lualine and bufferline to work
+					local current_path = vim.fn.getcwd()
+					local config_file_path = vim.fn.stdpath("config")
+
+					-- nvim does not work IDK why
+					-- local client = vim.g.neovide and "neovide" or "nvim"
+
+					vim.cmd("cd " .. config_file_path)
+					vim.fn.system("neovide" .. " " .. "init.lua")
+					vim.cmd("cd " .. current_path)
+
+					-- I think this is nightly only
+					-- vim.system({ "neovide", "init.lua" }, { cwd = config_file_path })
 				end,
 			},
 			{
