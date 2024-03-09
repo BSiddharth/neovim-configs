@@ -14,6 +14,13 @@ Set all non-plugin specific options for neovim here
 
 --]]
 
+-- neovide specific options
+if vim.g.neovide == true then
+	vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12"
+	vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>",
+		{ desc = "Go full screen" })
+end
+
 -- disable netrw at the very start of your init.lua as required by nvim-tree
 -- could have put this in init func of nvim-tree but cannot remember if other plugins need this too so putting at start here
 vim.g.loaded_netrw = 1
