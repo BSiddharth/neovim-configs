@@ -30,9 +30,7 @@ vim.keymap.set("n", "<leader>n", "<cmd> set nu! <CR>", { desc = "Toggle line num
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = "Clear highlights" })
 
--- <F29> == <C-F5>
-vim.keymap.set('n', '<C-F5>', function() -- in windows
-	-- vim.keymap.set('n', '<F29>', function() -- in linux or just try writing ctrl+<F5> again
+vim.keymap.set('n', '<C-F5>', function()
 	local current_file_path = vim.api.nvim_buf_get_name(0)
 	local term_command = nil
 	if vim.bo.filetype == "python" then
