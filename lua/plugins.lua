@@ -137,6 +137,7 @@ require("lazy").setup(
 			end,
 		},
 
+		-- displays a popup with possible key bindings
 		{
 			"folke/which-key.nvim",
 			event = "VeryLazy",
@@ -180,6 +181,7 @@ require("lazy").setup(
 			config = true,
 		},
 
+		-- info line at the bottom
 		{
 			'nvim-lualine/lualine.nvim',
 			dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -188,6 +190,7 @@ require("lazy").setup(
 			end
 		},
 
+		-- info line at the top telling about buffers and tabs
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
