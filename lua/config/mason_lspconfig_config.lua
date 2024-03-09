@@ -23,20 +23,47 @@ require("mason-lspconfig").setup_handlers({
 		})
 	end,
 	-- Next, you can provide a dedicated handler for specific servers.
-	-- For example, a handler override for the `lua_ls` so that it recognizes `vim` as a global table provided by neovim:
+	-- For example, :
 	["lua_ls"] = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
 			lineFoldingOnly = true
 		}
-		local lspconfig = require("lspconfig")
-		lspconfig.lua_ls.setup({
+
+		require("lspconfig").lua_ls.setup({
 			capabilities = capabilities,
 			settings = {
 				Lua = {
 					diagnostics = {
-						globals = { "vim" },
+						globals = { "vim" }, -- override for the `lua_ls` so that it recognizes `vim` as a global table provided by neovim					
+					},
+				},
+			},
+		})
+	end,
+
+
+	["pyright"] = function()
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
+		capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true
+		}
+
+		require("lspconfig").pyright.setup({
+			capabilities = capabilities,
+			settings = {
+				python = {
+					analysis = {
+						useLibraryCodeForTypes = true,
+						diagnosticSeverityOverrides = {
+							reportGeneralTypeIssues = "none",
+							reportUndefinedVariable = "none",
+							reportUnusedExpression = "none",
+							reportOptionalMemberAccess = "none",
+						},
+						typeCheckingMode = "basic",
 					},
 				},
 			},
