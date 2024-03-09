@@ -19,6 +19,7 @@ if vim.g.neovide == true then
 	vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12"
 	vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>",
 		{ desc = "Go full screen" })
+	vim.g.neovide_hide_mouse_when_typing = true
 end
 
 -- disable netrw at the very start of your init.lua as required by nvim-tree
