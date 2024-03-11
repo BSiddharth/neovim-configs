@@ -208,11 +208,10 @@ require("lazy").setup(
 		},
 
 		{
-			'fedepujol/move.nvim',
+			'echasnovski/mini.move',
+			version = false,
 			event = { "BufEnter" },
-			config = function()
-				require("config.move_config")
-			end,
+			config = true,
 		},
 
 		-- better folding
