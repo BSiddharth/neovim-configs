@@ -62,6 +62,7 @@ require("mason-lspconfig").setup_handlers({
 							reportUndefinedVariable = "none",
 							reportUnusedExpression = "none",
 							reportOptionalMemberAccess = "none",
+							reportReturnType = "none",
 						},
 						typeCheckingMode = "basic",
 					},
