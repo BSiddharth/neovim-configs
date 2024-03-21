@@ -318,7 +318,17 @@ require("lazy").setup(
 			config = function()
 				require("config.nvim_dap_python_config")
 			end
-		}
+		},
+
+		-- Markdown preview plugin
+		{
+			"toppair/peek.nvim",
+			event = { "VeryLazy" },
+			build = "deno task --quiet build:fast",
+			config = function()
+				require("config.peek_config")
+			end,
+		},
 	},
 
 	-- opts
