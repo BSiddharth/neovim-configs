@@ -100,6 +100,13 @@ require("lazy").setup(
 			end,
 		},
 
+		-- Automatically install formatters registred with conform.nvim via mason
+		{
+			"zapling/mason-conform.nvim",
+			dependencies = { "williamboman/mason.nvim", "stevearc/conform.nvim", },
+			config = true,
+		},
+
 		-- completion engine
 		{
 			"hrsh7th/nvim-cmp",
