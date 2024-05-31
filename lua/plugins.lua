@@ -31,7 +31,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- install and setup plugins
 require("lazy").setup(
--- plugins
+	-- plugins
 	{
 		-- colorscheme
 		{
@@ -63,7 +63,7 @@ require("lazy").setup(
 		-- Lsp configs for the inbuilt lsp client of neovim
 		{
 			"neovim/nvim-lspconfig",
-			event = { "BufEnter", },
+			event = { "BufEnter" },
 			dependencies = { "williamboman/mason-lspconfig.nvim" },
 			config = function()
 				require("config.nvim_lspconfig_config")
@@ -103,7 +103,7 @@ require("lazy").setup(
 		-- Automatically install formatters registred with conform.nvim via mason
 		{
 			"zapling/mason-conform.nvim",
-			dependencies = { "williamboman/mason.nvim", "stevearc/conform.nvim", },
+			dependencies = { "williamboman/mason.nvim", "stevearc/conform.nvim" },
 			config = true,
 		},
 
@@ -182,7 +182,7 @@ require("lazy").setup(
 			config = function()
 				require("config.dashboard_nvim_config")
 			end,
-			dependencies = { "nvim-tree/nvim-web-devicons", },
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 		},
 
 		-- if some code requires a module from an unloaded plugin, it will be automatically loaded.
@@ -197,11 +197,11 @@ require("lazy").setup(
 
 		-- info line at the bottom
 		{
-			'nvim-lualine/lualine.nvim',
-			dependencies = { 'nvim-tree/nvim-web-devicons' },
+			"nvim-lualine/lualine.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			config = function()
 				require("config.lualine_nvim_config")
-			end
+			end,
 		},
 
 		-- info line at the top telling about buffers and tabs
@@ -211,11 +211,11 @@ require("lazy").setup(
 			dependencies = "nvim-tree/nvim-web-devicons",
 			config = function()
 				require("config.bufferline_config")
-			end
+			end,
 		},
 
 		{
-			'echasnovski/mini.move',
+			"echasnovski/mini.move",
 			version = false,
 			event = { "BufEnter" },
 			config = true,
@@ -223,19 +223,19 @@ require("lazy").setup(
 
 		-- better folding
 		{
-			'kevinhwang91/nvim-ufo',
+			"kevinhwang91/nvim-ufo",
 			event = { "BufEnter" },
-			dependencies = { "kevinhwang91/promise-async", 'neovim/nvim-lspconfig', },
+			dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
 			config = function()
 				require("config.nvim_ufo_config")
-			end
+			end,
 		},
 
 		-- get fancy comments like  TODO: Do what now?
 		{
 			"folke/todo-comments.nvim",
 			cmd = { "TodoTrouble", "TodoTelescope" },
-			event = { "BufEnter", },
+			event = { "BufEnter" },
 			dependencies = { "nvim-lua/plenary.nvim" },
 			config = true,
 		},
@@ -244,35 +244,35 @@ require("lazy").setup(
 		{
 			"mfussenegger/nvim-lint",
 			events = { "BufEnter" },
-			dependencies = { "williamboman/mason.nvim", },
+			dependencies = { "williamboman/mason.nvim" },
 			config = function()
 				require("config.nvim_lint_config")
-			end
+			end,
 		},
 
 		-- glue plugin that downloads linter mentioned in nvim-lint using mason
 		{
 			"rshkarin/mason-nvim-lint",
 			events = { "BufEnter" },
-			dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-lint", },
+			dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-lint" },
 			config = true,
 		},
 
 		-- terminal that can toggle
 		{
-			'akinsho/toggleterm.nvim',
+			"akinsho/toggleterm.nvim",
 			events = "VeryLazy",
 			version = "*",
 			config = function()
 				require("config.toggleterm_config")
-			end
+			end,
 		},
 
 		-- manages whole rust setup
 		{
-			'mrcjkb/rustaceanvim',
-			version = '^4', -- Recommended
-			ft = { 'rust' },
+			"mrcjkb/rustaceanvim",
+			version = "^4", -- Recommended
+			ft = { "rust" },
 		},
 
 		-- notification manager
@@ -280,14 +280,14 @@ require("lazy").setup(
 			"rcarriga/nvim-notify",
 			config = function()
 				require("config.nvim_notify_config")
-			end
+			end,
 		},
 
 		-- integrate git signs in the buffer
 		{
 			"lewis6991/gitsigns.nvim",
 			events = { "BufEnter" },
-			config = true
+			config = true,
 		},
 
 		-- Debug Adapter Protocol client implementation for Neovim
@@ -295,36 +295,35 @@ require("lazy").setup(
 			"mfussenegger/nvim-dap",
 			config = function()
 				require("config.nvim_dap_config")
-			end
+			end,
 		},
 
 		-- A UI for nvim-dap
 		{
 			"rcarriga/nvim-dap-ui",
-			dependencies = { "mfussenegger/nvim-dap" },
+			dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 			config = function()
 				require("config.nvim_dap_ui_config")
-			end
+			end,
 		},
 
 		-- bridges mason.nvim with the nvim-dap plugin - making it easier to use both plugins together.
 		{
 			"jay-babu/mason-nvim-dap.nvim",
-			dependencies = { "williamboman/mason.nvim",
-				"mfussenegger/nvim-dap", },
+			dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
 			config = function()
 				require("config.mason_nvim_dap_config")
-			end
+			end,
 		},
 
 		-- An extension for nvim-dap, providing default configurations for python and methods to debug individual test methods or classes.
 		{
 			"mfussenegger/nvim-dap-python",
 			ft = "python",
-			dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui", },
+			dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
 			config = function()
 				require("config.nvim_dap_python_config")
-			end
+			end,
 		},
 
 		-- Markdown preview plugin
