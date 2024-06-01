@@ -1,7 +1,7 @@
 local opts = {
 	-- only lsp server go here, formatter are handled by conform and linter not needed for now but use nvim-linter when required
 	-- this plugin uses the lspconfig server names in the APIs it exposes - not mason.nvim package names
-	ensure_installed = { "lua_ls", "pyright", "clangd" },
+	ensure_installed = { "lua_ls", "pyright", "clangd", "tsserver" },
 }
 
 require("mason-lspconfig").setup(opts)
@@ -16,7 +16,7 @@ require("mason-lspconfig").setup_handlers({
 		-- folding capabilities by ufo
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
-			lineFoldingOnly = true
+			lineFoldingOnly = true,
 		}
 		require("lspconfig")[server_name].setup({
 			capabilities = capabilities,
@@ -28,7 +28,7 @@ require("mason-lspconfig").setup_handlers({
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
-			lineFoldingOnly = true
+			lineFoldingOnly = true,
 		}
 
 		require("lspconfig").lua_ls.setup({
@@ -36,19 +36,18 @@ require("mason-lspconfig").setup_handlers({
 			settings = {
 				Lua = {
 					diagnostics = {
-						globals = { "vim" }, -- override for the `lua_ls` so that it recognizes `vim` as a global table provided by neovim					
+						globals = { "vim" }, -- override for the `lua_ls` so that it recognizes `vim` as a global table provided by neovim
 					},
 				},
 			},
 		})
 	end,
 
-
 	["pyright"] = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		capabilities.textDocument.foldingRange = {
 			dynamicRegistration = false,
-			lineFoldingOnly = true
+			lineFoldingOnly = true,
 		}
 
 		require("lspconfig").pyright.setup({
