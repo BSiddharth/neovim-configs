@@ -16,7 +16,7 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
 --  NOTE: All .lua files have to be in lua folder. See https://youtu.be/U0TqE__vSno?list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAft&t=691 for more info
 require("options")
 
--- set non-plugin specific mappings in maappings.lua
+-- set non-plugin specific mappings in mappings.lua
 require("mappings")
 
 -- set custom autocmd here

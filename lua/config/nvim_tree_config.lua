@@ -1,10 +1,9 @@
-require("nvim-tree").setup({
+return {
 	diagnostics = {
 		enable = true,
 	},
 	git = {
 		ignore = false,
 	},
-	update_focused_file = { enable = true }
-})
-vim.keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
+	update_focused_file = { enable = true },
+}

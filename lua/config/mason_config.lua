@@ -1,4 +1,4 @@
-require("mason").setup({
+return {
 	ui = {
 		icons = {
 			package_installed = "✓",
@@ -6,4 +6,4 @@ require("mason").setup({
 			package_uninstalled = "✗",
 		},
 	},
-})
+}

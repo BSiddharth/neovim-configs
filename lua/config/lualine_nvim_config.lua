@@ -14,11 +14,11 @@ local clients_lsp = function()
 	return "\u{f085} " .. table.concat(c, "|")
 end
 
-require("lualine").setup({
+return {
 	options = {
 		disabled_filetypes = { "dashboard" }, -- to hide lualine when `:q[uit]` form config
 	},
 	sections = {
 		lualine_x = { "encoding", clients_lsp, "filetype" },
 	},
-})
+}

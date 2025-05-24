@@ -30,12 +30,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- install and setup plugins
-require("lazy").setup(
+require("lazy").setup({
 	-- plugins
-	{
+	spec = {
 		-- colorscheme
 		{
 			"catppuccin/nvim",
+			lazy = false,
 			name = "catppuccin",
 			priority = 1000,
 			config = function()
@@ -48,25 +49,21 @@ require("lazy").setup(
 			"nvim-treesitter/nvim-treesitter",
 			branch = "master",
 			lazy = false,
-			-- event = { "BufEnter" },
-			config = function()
-				require("config.nvim_treesitter_configs")
-			end,
+			opts = require("config.nvim_treesitter_configs"),
 			build = ":TSUpdate",
 		},
 
 		-- this plugin enables us to use textobjects module in the nvim-treesitter plugin
 		{
 			"nvim-treesitter/nvim-treesitter-textobjects",
-			event = { "BufEnter" },
+			lazy = false,
 			dependencies = { "nvim-treesitter/nvim-treesitter" },
 		},
 
 		-- Lsp configs for the inbuilt lsp client of neovim
 		{
 			"neovim/nvim-lspconfig",
-			event = { "BufEnter" },
-			dependencies = { "williamboman/mason-lspconfig.nvim" },
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 			config = function()
 				require("config.nvim_lspconfig_config")
 			end,
@@ -74,35 +71,26 @@ require("lazy").setup(
 
 		-- package manager for LSP servers, DAP servers, linters and formatters
 		{
-			"williamboman/mason.nvim",
-			cmd = "Mason",
-			build = ":MasonUpdate",
-			config = function()
-				require("config.mason_config")
-			end,
+			"mason-org/mason.nvim",
+			opts = require("config.mason_config"),
 		},
 
 		-- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 		{
-			"williamboman/mason-lspconfig.nvim",
-			cmd = { "LspInstall", "LspUinstall" },
-			dependencies = { "williamboman/mason.nvim", "hrsh7th/cmp-nvim-lsp" },
-			config = function()
-				require("config.mason_lspconfig_config")
-			end,
+			"mason-org/mason-lspconfig.nvim",
+			dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig", "hrsh7th/cmp-nvim-lsp" },
+			opts = require("config.mason_lspconfig_config"),
 		},
 
-		-- handles formatting
+		-- handles formatting. On why are we not using LSP to format : https://github.com/stevearc/conform.nvim/tree/master?tab=readme-ov-file#features
 		{
 			"stevearc/conform.nvim",
-			event = { "BufEnter" },
+			event = { "BufWritePre" },
 			cmd = { "ConformInfo" },
-			config = function()
-				require("config.conform_config")
-			end,
+			opts = require("config.conform_config"),
 		},
 
-		-- Automatically install formatters registred with conform.nvim via mason
+		-- Automatically install formatters registered with conform.nvim via mason
 		{
 			"zapling/mason-conform.nvim",
 			dependencies = { "williamboman/mason.nvim", "stevearc/conform.nvim" },
@@ -147,63 +135,83 @@ require("lazy").setup(
 				"nvim-treesitter/nvim-treesitter",
 				"nvim-tree/nvim-web-devicons",
 			},
-			config = function()
-				require("config.telescope")
-			end,
+			keys = {
+				{
+					"<leader>ff",
+					function()
+						require("telescope.builtin").find_files()
+					end,
+					desc = "Telescope files", -- will respect .gitgnore so keep that in mind
+				},
+
+				{
+					"<leader>fg",
+					function()
+						require("telescope.builtin").live_grep()
+					end,
+					desc = "Live grep",
+				},
+
+				{
+					"<leader>fb",
+					function()
+						require("telescope.builtin").buffers()
+					end,
+					desc = "Telescope buffers",
+				},
+
+				{
+					"<leader>fh",
+					function()
+						require("telescope.builtin").help_tags()
+					end,
+					desc = "Telescope help tags",
+				},
+			},
 		},
 
 		-- displays a popup with possible key bindings
 		{
 			"folke/which-key.nvim",
 			event = "VeryLazy",
-			init = function()
-				vim.o.timeout = true
-				vim.o.timeoutlen = 500
-			end,
 			opts = {},
-		},
-
-		-- autopairs for quotes, paranthesis etc
-		{
-			"windwp/nvim-autopairs",
-			event = "InsertEnter",
-			config = true,
 		},
 
 		-- Tree file explorer
 		{
 			"nvim-tree/nvim-tree.lua",
-			config = function()
-				require("config.nvim_tree_config")
-			end,
+			opts = require("config.nvim_tree_config"),
+			keys = {
+				{ "<C-n>", "<cmd> NvimTreeToggle <CR>", desc = "Toggle nvimtree" },
+			},
 		},
 
 		{
 			"nvimdev/dashboard-nvim",
 			event = "VimEnter",
-			config = function()
-				require("config.dashboard_nvim_config")
-			end,
+			opts = require("config.dashboard_nvim_config"),
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 		},
 
-		-- if some code requires a module from an unloaded plugin, it will be automatically loaded.
+		-- If some code requires a module from an unloaded plugin, it will be automatically loaded.
 		-- So for api plugins like devicons, we can always set lazy=true
-		{ "nvim-tree/nvim-web-devicons", lazy = true },
+		{ "nvim-tree/nvim-web-devicons", lazy = true, opts = {} },
 
+		-- Library of 40+ independent Lua modules improving overall Neovim
+		-- Using for Commenting, autopairs
 		{
-			"numToStr/Comment.nvim",
-			event = "BufEnter",
-			config = true,
+			"echasnovski/mini.nvim",
+			version = false,
+			config = function()
+				require("config.mini_config")
+			end,
 		},
 
 		-- info line at the bottom
 		{
 			"nvim-lualine/lualine.nvim",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
-			config = function()
-				require("config.lualine_nvim_config")
-			end,
+			opts = require("config.lualine_nvim_config"),
 		},
 
 		-- info line at the top telling about buffers and tabs
@@ -211,42 +219,21 @@ require("lazy").setup(
 			"akinsho/bufferline.nvim",
 			version = "*",
 			dependencies = "nvim-tree/nvim-web-devicons",
-			config = function()
-				require("config.bufferline_config")
-			end,
-		},
-
-		{
-			"echasnovski/mini.move",
-			version = false,
-			event = { "BufEnter" },
-			config = true,
-		},
-
-		-- better folding
-		{
-			"kevinhwang91/nvim-ufo",
-			event = { "BufEnter" },
-			dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
-			config = function()
-				require("config.nvim_ufo_config")
-			end,
+			opts = require("config.bufferline_config"),
 		},
 
 		-- get fancy comments like  TODO: Do what now?
 		{
 			"folke/todo-comments.nvim",
 			cmd = { "TodoTrouble", "TodoTelescope" },
-			event = { "BufEnter" },
 			dependencies = { "nvim-lua/plenary.nvim" },
-			config = true,
+			opts = {},
 		},
 
 		-- helps in managing linters
 		{
 			"mfussenegger/nvim-lint",
-			events = { "BufEnter" },
-			dependencies = { "williamboman/mason.nvim" },
+			dependencies = { "williamboman/mason.nvim" }, -- required by mason-nvim-lint to be like this
 			config = function()
 				require("config.nvim_lint_config")
 			end,
@@ -257,7 +244,7 @@ require("lazy").setup(
 			"rshkarin/mason-nvim-lint",
 			events = { "BufEnter" },
 			dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-lint" },
-			config = true,
+			opts = {},
 		},
 
 		-- terminal that can toggle
@@ -265,39 +252,46 @@ require("lazy").setup(
 			"akinsho/toggleterm.nvim",
 			events = "VeryLazy",
 			version = "*",
-			config = function()
-				require("config.toggleterm_config")
-			end,
+			opts = require("config.toggleterm_config"),
+			keys = {
+				{ "<A-f>", ":ToggleTerm direction=float<CR>", desc = "Floating term" },
+				{ "<A-v>", ":ToggleTerm direction=vertical<CR>", desc = "Vertical term" },
+				{ "<A-h>", ":ToggleTerm direction=horizontal<CR>", desc = "Horizontal term" },
+			},
 		},
 
-		-- manages whole rust setup
-		{
-			"mrcjkb/rustaceanvim",
-			version = "^4", -- Recommended
-			ft = { "rust" },
-		},
+		-- -- manages whole rust setup
+		-- {
+		-- 	"mrcjkb/rustaceanvim",
+		-- 	version = "^6", -- Recommended
+		-- 	lazy = false, -- This plugin is already lazy
+		-- },
 
 		-- notification manager
 		{
 			"rcarriga/nvim-notify",
+			lazy = false,
 			config = function()
 				require("config.nvim_notify_config")
 			end,
+
+			-- since lazy is set to false, putting this here might not make sense but still just to be consistent
+			keys = {
+				{ "<leader>dn", ":lua require('notify').dismiss() <CR>", desc = "Dismiss all notifications" },
+			},
 		},
 
 		-- integrate git signs in the buffer
 		{
 			"lewis6991/gitsigns.nvim",
-			events = { "BufEnter" },
-			config = true,
 		},
 
 		-- Debug Adapter Protocol client implementation for Neovim
 		{
 			"mfussenegger/nvim-dap",
-			config = function()
-				require("config.nvim_dap_config")
-			end,
+			keys = {
+				{ "<leader>db", "<cmd> DapToggleBreakpoint <CR>", desc = "Toggle breakpoints" }, -- https://github.com/mfussenegger/nvim-dap/discussions/355#discussioncomment-2159022
+			},
 		},
 
 		-- A UI for nvim-dap
@@ -313,9 +307,7 @@ require("lazy").setup(
 		{
 			"jay-babu/mason-nvim-dap.nvim",
 			dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-			config = function()
-				require("config.mason_nvim_dap_config")
-			end,
+			opts = require("config.mason_nvim_dap_config"),
 		},
 
 		-- An extension for nvim-dap, providing default configurations for python and methods to debug individual test methods or classes.
@@ -323,9 +315,16 @@ require("lazy").setup(
 			"mfussenegger/nvim-dap-python",
 			ft = "python",
 			dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-			config = function()
-				require("config.nvim_dap_python_config")
-			end,
+			opts = require("config.nvim_dap_python_config"),
+			keys = {
+				{
+					"<leader>rpd",
+					function()
+						require("dap-python").test_method()
+					end,
+					desc = "Run python debugger",
+				},
+			},
 		},
 
 		-- Markdown preview plugin
@@ -339,13 +338,6 @@ require("lazy").setup(
 		},
 	},
 
-	-- opts
-	{
-		install = {
-			colorscheme = {
-				"catppuccin",
-				"habamax", -- fallback , builtin
-			},
-		},
-	}
-)
+	-- automatically check for plugin updates
+	checker = { enabled = true },
+})

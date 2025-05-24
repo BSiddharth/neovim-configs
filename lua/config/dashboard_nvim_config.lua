@@ -62,7 +62,8 @@ local logo = [[
 				]]
 
 logo = vim.split(logo, "\n")
-require("dashboard").setup({
+
+return {
 	config = {
 		header = logo,
 		shortcut = {
@@ -106,4 +107,4 @@ require("dashboard").setup({
 		},
 		footer = { "", "Major bugs 🐛 incoming !!!" },
 	},
-})
+}

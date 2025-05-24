@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+return {
 
 	-- makes sure grammar for these languages are installed (does not matter if I will be opening that type of file or not)
 	-- keeping this as it does not really matter plus looks like vimdoc causes warning in healthcheck if not installed
@@ -37,4 +37,4 @@ require("nvim-treesitter.configs").setup({
 			include_surrounding_whitespace = true,
 		},
 	},
-})
+}

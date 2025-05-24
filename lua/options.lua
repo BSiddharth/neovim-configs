@@ -81,3 +81,14 @@ vim.opt.cursorline = true
 
 -- Save undo history
 vim.opt.undofile = true
+
+-- Custom expressions are used to create folds
+vim.opt.foldmethod = "expr"
+-- Lsp is asked to provide these expressions, afaiu lsp will tell how to fold a given text thats all
+vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
+-- Folds take no space in the left column
+vim.opt.foldcolumn = "0"
+-- By setting foldtext to an empty string, it means that the first line of the fold will be syntax highlighted so I know what is commented
+vim.opt.foldtext = ""
+-- Keeps fold till 99 level open (basically hack to keep all folds open by default)
+vim.opt.foldlevel = 99
