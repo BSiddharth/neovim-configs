@@ -1,6 +1,6 @@
 require("nvim-treesitter.configs").setup({
-	-- I think this is not neccessary since auto_install is set
-	-- kinda confusing if they want us to make sure that these 5 should always be installed
+
+	-- makes sure grammar for these languages are installed (does not matter if I will be opening that type of file or not)
 	-- keeping this as it does not really matter plus looks like vimdoc causes warning in healthcheck if not installed
 	ensure_installed = { "vim", "c", "lua", "vimdoc", "query" },
 
@@ -20,9 +20,9 @@ require("nvim-treesitter.configs").setup({
 			lookahead = true,
 
 			keymaps = {
-				["af"] = { query = "@function.outer", desc = "Select inner part of a function region" },
+				["af"] = { query = "@function.outer", desc = "Select outer part of a function region" },
 				["if"] = { query = "@function.inner", desc = "Select inner part of a function region" },
-				["ac"] = { query = "@class.outer", desc = "Select inner part of a class region" },
+				["ac"] = { query = "@class.outer", desc = "Select outer part of a class region" },
 				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
 			},
 
