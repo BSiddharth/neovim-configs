@@ -17,8 +17,12 @@ Set all non-plugin specific options for neovim here
 -- neovide specific options
 if vim.g.neovide == true then
 	vim.o.guifont = "JetBrainsMono Nerd Font Mono:h12"
-	vim.api.nvim_set_keymap('n', '<F11>', ":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>",
-		{ desc = "Go full screen" })
+	vim.api.nvim_set_keymap(
+		"n",
+		"<F11>",
+		":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>",
+		{ desc = "Go full screen" }
+	)
 	vim.g.neovide_hide_mouse_when_typing = true
 end
 
@@ -39,6 +43,9 @@ vim.opt.splitright = true
 
 -- Line wrapping
 vim.opt.wrap = false
+
+-- Use spaces to express tabs
+vim.opt.expandtab = true
 
 -- Number of spaces in a tab
 vim.opt.tabstop = 4
