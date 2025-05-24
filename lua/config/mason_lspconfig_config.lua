@@ -1,7 +1,8 @@
 local opts = {
 	-- only lsp server go here, formatter are handled by conform and linter not needed for now but use nvim-linter when required
 	-- this plugin uses the lspconfig server names in the APIs it exposes - not mason.nvim package names
-	ensure_installed = { "lua_ls", "pyright", "clangd", "tsserver", "html", "cssls" },
+	ensure_installed = { "lua_ls", "pyright", "clangd", "html", "cssls" },
+	-- ensure_installed = { "lua_ls", "pyright", "clangd", "tsserver", "html", "cssls" },
 }
 
 require("mason-lspconfig").setup(opts)
