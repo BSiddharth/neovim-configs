@@ -21,7 +21,7 @@ if vim.g.neovide == true then
 		"n",
 		"<F11>",
 		":let g:neovide_fullscreen = !g:neovide_fullscreen<CR>",
-		{ desc = "Go full screen" }
+		{ desc = "Toggle full screen" }
 	)
 	vim.g.neovide_hide_mouse_when_typing = true
 end
@@ -30,6 +30,8 @@ end
 -- could have put this in init func of nvim-tree but cannot remember if other plugins need this too so putting at start here
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+vim.g.mapleader = " "
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -63,13 +65,12 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.virtualedit = "block"
 
 -- So that I can also see the changes of substitute in a split window all clubbed together
+-- not working for some reason
 vim.opt.inccommand = "split"
 
 vim.opt.ignorecase = true
 
 vim.opt.termguicolors = true
-
-vim.g.mapleader = " "
 
 -- Sets how neovim will display certain whitespace in the editor
 vim.opt.list = true
