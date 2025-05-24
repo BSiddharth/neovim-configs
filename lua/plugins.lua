@@ -46,7 +46,9 @@ require("lazy").setup(
 		-- provides a way to interact with treesitter core inbuilt in neovim
 		{
 			"nvim-treesitter/nvim-treesitter",
-			event = { "BufEnter" },
+			branch = "master",
+			lazy = false,
+			-- event = { "BufEnter" },
 			config = function()
 				require("config.nvim_treesitter_configs")
 			end,

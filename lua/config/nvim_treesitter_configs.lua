@@ -22,6 +22,8 @@ require("nvim-treesitter.configs").setup({
 			keymaps = {
 				["af"] = { query = "@function.outer", desc = "Select outer part of a function region" },
 				["if"] = { query = "@function.inner", desc = "Select inner part of a function region" },
+
+				-- do I really need these?
 				["ac"] = { query = "@class.outer", desc = "Select outer part of a class region" },
 				["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
 			},

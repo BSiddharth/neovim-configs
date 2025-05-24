@@ -67,7 +67,7 @@ require("dashboard").setup({
 		header = logo,
 		shortcut = {
 			{
-				desc = "⚙️ Config",
+				desc = "⚙️Config",
 				group = "DashboardShortCut",
 				key = "c",
 				action = function()
