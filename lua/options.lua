@@ -93,3 +93,8 @@ vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 -- Keeps fold till 99 level open (HACK: Keep all folds open by default)
 vim.opt.foldlevel = 99
+
+-- diagnostics setting
+vim.diagnostic.config({
+	virtual_lines = true,
+})

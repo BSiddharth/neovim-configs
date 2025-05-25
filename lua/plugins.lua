@@ -64,9 +64,6 @@ require("lazy").setup({
 		{
 			"neovim/nvim-lspconfig",
 			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-			config = function()
-				require("config.nvim_lspconfig_config")
-			end,
 		},
 
 		-- package manager for LSP servers, DAP servers, linters and formatters
@@ -329,6 +326,19 @@ require("lazy").setup({
 			config = function()
 				require("config.peek_config")
 			end,
+		},
+
+		-- Faster LuaLS setup for Neovim
+		{
+			"folke/lazydev.nvim",
+			ft = "lua", -- only load on lua files
+			opts = {
+				library = {
+					-- See the configuration section for more details
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
 		},
 	},
 
