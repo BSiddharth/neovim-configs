@@ -31,6 +31,7 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- set space as mapleader
 vim.g.mapleader = " "
 
 vim.opt.number = true
@@ -65,7 +66,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.virtualedit = "block"
 
 -- So that I can also see the changes of substitute in a split window all clubbed together
--- not working for some reason
+-- FIX: Not working for some reason
 vim.opt.inccommand = "split"
 
 vim.opt.ignorecase = true
@@ -90,5 +91,5 @@ vim.opt.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.opt.foldcolumn = "0"
 -- By setting foldtext to an empty string, it means that the first line of the fold will be syntax highlighted so I know what is commented
 vim.opt.foldtext = ""
--- Keeps fold till 99 level open (basically hack to keep all folds open by default)
+-- Keeps fold till 99 level open (HACK: Keep all folds open by default)
 vim.opt.foldlevel = 99
