@@ -78,7 +78,7 @@ require("lazy").setup({
 		-- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 		{
 			"mason-org/mason-lspconfig.nvim",
-			dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig", "hrsh7th/cmp-nvim-lsp" },
+			dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
 			opts = require("config.mason_lspconfig_config"),
 		},
 
@@ -97,27 +97,15 @@ require("lazy").setup({
 			config = true,
 		},
 
-		-- completion engine
 		{
-			"hrsh7th/nvim-cmp",
-			event = "InsertEnter",
-			dependencies = {
-				"neovim/nvim-lspconfig",
-				"hrsh7th/cmp-nvim-lua", -- nvim-cmp source for nvim lua
-				"hrsh7th/cmp-nvim-lsp", -- nvim-cmp source for neovim builtin LSP client
-				"hrsh7th/cmp-buffer", -- nvim-cmp source for buffer words
-				"hrsh7th/cmp-path", -- nvim-cmp source for path
-				"hrsh7th/cmp-cmdline", -- nvim-cmp source for vim's cmdline
-				"L3MON4D3/LuaSnip", -- snippet engine
-				"saadparwaiz1/cmp_luasnip", -- luasnip completion source for nvim-cmp
-				"rafamadriz/friendly-snippets", -- useful snippets library
-				"onsails/lspkind.nvim", -- vs-code like pictograms
-				"windwp/nvim-autopairs", -- to complete paranthesis
-				"octaltree/cmp-look", -- source for english words
-			},
-			config = function()
-				require("config.nvim_cmp_config")
-			end,
+			"saghen/blink.cmp",
+			-- optional: provides snippets for the snippet source
+			dependencies = { "rafamadriz/friendly-snippets" },
+			-- use a release tag to download pre-built binaries
+			version = "1.*",
+
+			opts = require("config.blink_cmp_config"),
+			opts_extend = { "sources.default" },
 		},
 
 		-- helps in searching through whole neovim
@@ -166,6 +154,11 @@ require("lazy").setup({
 						require("telescope.builtin").help_tags()
 					end,
 					desc = "Telescope help tags",
+				},
+				{
+					"<leader>fk",
+					"<cmd>Telescope keymaps<CR>",
+					desc = "Telescope keymaps",
 				},
 			},
 		},

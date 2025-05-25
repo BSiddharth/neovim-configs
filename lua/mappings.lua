@@ -8,6 +8,8 @@ set non plugin specific mappings here
 
 ]]
 
+-- NOTE: These are just non plugin specific mappings. Plugin specific are written with the plugins (so that when plugin is deleted they get cleared automatically and plugins are lazily loaded when those mappings are triggered)
+
 -- to make window traversal a little easy
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Window left" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Window right" })
