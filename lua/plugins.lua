@@ -225,6 +225,7 @@ require("lazy").setup({
 		-- get fancy comments like  TODO: Do what now?
 		{
 			"folke/todo-comments.nvim",
+			lazy = false,
 			cmd = { "TodoTrouble", "TodoTelescope" },
 			dependencies = { "nvim-lua/plenary.nvim" },
 			opts = {},
