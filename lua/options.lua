@@ -96,5 +96,12 @@ vim.opt.foldlevel = 99
 
 -- diagnostics setting
 vim.diagnostic.config({
-	virtual_lines = true,
+	virtual_lines = {
+		format = function(diagnostic)
+			if diagnostic.source then
+				return string.format("%s [%s]", diagnostic.message, diagnostic.source)
+			end
+			return diagnostic.message
+		end,
+	},
 })
