@@ -247,7 +247,7 @@ require("lazy").setup({
 			keys = {
 				{ "<A-f>", ":ToggleTerm direction=float<CR>", desc = "Floating term" },
 				{ "<A-v>", ":ToggleTerm direction=vertical<CR>", desc = "Vertical term" },
-				{ "<A-h>", ":ToggleTerm direction=horizontal<CR>", desc = "Horizontal term" },
+				{ "<A-H>", ":ToggleTerm direction=horizontal<CR>", desc = "Horizontal term" },
 			},
 		},
 
