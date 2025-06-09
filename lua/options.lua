@@ -47,6 +47,9 @@ vim.opt.splitright = true
 -- Line wrapping
 vim.opt.wrap = false
 
+-- When wrap is true, break line only after words rather sometimes on characters
+vim.opt.linebreak = true
+
 -- Use spaces to express tabs
 vim.opt.expandtab = true
 
