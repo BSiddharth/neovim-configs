@@ -11,7 +11,7 @@ _|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|
 
 --]]
 
--- NOTE: All .lua files have to be in lua folder. See https://youtu.be/U0TqE__vSno?list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAft&t=691 for more info
+-- NOTE: All .lua files (apart from init.lua) have to be in lua folder. See https://youtu.be/U0TqE__vSno?list=PLx2ksyallYzW4WNYHD9xOFrPRYGlntAft&t=691 for more info
 
 -- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 
