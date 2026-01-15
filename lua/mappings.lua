@@ -61,6 +61,7 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" }
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 -- e for errors
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Open errors/diagnostics dialog" })
+-- FIX: replace deprecated functions
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to prev error/diagnostic" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next error/diagnostic" })
 
