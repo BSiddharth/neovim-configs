@@ -69,7 +69,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.virtualedit = "block"
 
 -- So that I can also see the changes of substitute in a split window all clubbed together
--- FIX: Not working for some reason
+-- NOTE: Does not work in neovide https://github.com/neovide/neovide/issues/1947
 vim.opt.inccommand = "split"
 
 vim.opt.ignorecase = true
