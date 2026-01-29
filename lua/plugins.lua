@@ -277,46 +277,63 @@ require("lazy").setup({
 			"lewis6991/gitsigns.nvim",
 		},
 
-		-- Debug Adapter Protocol client implementation for Neovim
 		{
-			"mfussenegger/nvim-dap",
-			keys = {
-				{ "<leader>db", "<cmd> DapToggleBreakpoint <CR>", desc = "Toggle breakpoints" }, -- https://github.com/mfussenegger/nvim-dap/discussions/355#discussioncomment-2159022
+			"joshzcold/python.nvim",
+			dependencies = {
+				{ "mfussenegger/nvim-dap" },
+				{ "mfussenegger/nvim-dap-python" },
+				{ "neovim/nvim-lspconfig" },
+				{ "L3MON4D3/LuaSnip" },
+				{ "nvim-neotest/neotest" },
+				{ "nvim-neotest/neotest-python" },
 			},
-		},
-
-		-- A UI for nvim-dap
-		{
-			"rcarriga/nvim-dap-ui",
-			dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-			config = function()
-				require("config.nvim_dap_ui_config")
-			end,
-		},
-
-		-- bridges mason.nvim with the nvim-dap plugin - making it easier to use both plugins together.
-		{
-			"jay-babu/mason-nvim-dap.nvim",
-			dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
-			opts = require("config.mason_nvim_dap_config"),
-		},
-
-		-- An extension for nvim-dap, providing default configurations for python and methods to debug individual test methods or classes.
-		{
-			"mfussenegger/nvim-dap-python",
 			ft = "python",
-			dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-			opts = require("config.nvim_dap_python_config"),
 			keys = {
-				{
-					"<leader>rpd",
-					function()
-						require("dap-python").test_method()
-					end,
-					desc = "Run python debugger",
-				},
+				{ "<leader>pv", "<cmd>Python venv pick<cr>", desc = "python.nvim: pick venv" },
+				{ "<leader>pi", "<cmd>Python venv install<cr>", desc = "python.nvim: python venv install" },
+				{ "<leader>pd", "<cmd>Python dap<cr>", desc = "python.nvim: python run debug program" },
 			},
 		},
+		-- -- Debug Adapter Protocol client implementation for Neovim
+		-- {
+		-- 	"mfussenegger/nvim-dap",
+		-- 	keys = {
+		-- 		{ "<leader>db", "<cmd> DapToggleBreakpoint <CR>", desc = "Toggle breakpoints" }, -- https://github.com/mfussenegger/nvim-dap/discussions/355#discussioncomment-2159022
+		-- 	},
+		-- },
+		--
+		-- -- A UI for nvim-dap
+		-- {
+		-- 	"rcarriga/nvim-dap-ui",
+		-- 	dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		-- 	config = function()
+		-- 		require("config.nvim_dap_ui_config")
+		-- 	end,
+		-- },
+		--
+		-- -- bridges mason.nvim with the nvim-dap plugin - making it easier to use both plugins together.
+		-- {
+		-- 	"jay-babu/mason-nvim-dap.nvim",
+		-- 	dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
+		-- 	opts = require("config.mason_nvim_dap_config"),
+		-- },
+		--
+		-- -- An extension for nvim-dap, providing default configurations for python and methods to debug individual test methods or classes.
+		-- {
+		-- 	"mfussenegger/nvim-dap-python",
+		-- 	ft = "python",
+		-- 	dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
+		-- 	opts = require("config.nvim_dap_python_config"),
+		-- 	keys = {
+		-- 		{
+		-- 			"<leader>rpd",
+		-- 			function()
+		-- 				require("dap-python").test_method()
+		-- 			end,
+		-- 			desc = "Run python debugger",
+		-- 		},
+		-- 	},
+		-- },
 
 		-- Markdown preview plugin
 		{
