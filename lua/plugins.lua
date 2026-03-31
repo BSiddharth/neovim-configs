@@ -288,6 +288,7 @@ require("lazy").setup({
 				{ "nvim-neotest/neotest-python" },
 			},
 			ft = "python",
+			opts = {},
 			keys = {
 				{ "<leader>pv", "<cmd>Python venv pick<cr>", desc = "python.nvim: pick venv" },
 				{ "<leader>pi", "<cmd>Python venv install<cr>", desc = "python.nvim: python venv install" },
