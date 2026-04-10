@@ -278,21 +278,15 @@ require("lazy").setup({
 		},
 
 		{
-			"joshzcold/python.nvim",
+			"linux-cultist/venv-selector.nvim",
 			dependencies = {
-				{ "mfussenegger/nvim-dap" },
-				{ "mfussenegger/nvim-dap-python" },
-				{ "neovim/nvim-lspconfig" },
-				{ "L3MON4D3/LuaSnip" },
-				{ "nvim-neotest/neotest" },
-				{ "nvim-neotest/neotest-python" },
+				{ "nvim-telescope/telescope.nvim", version = "*", dependencies = { "nvim-lua/plenary.nvim" } }, -- optional: you can also use fzf-lua, snacks, mini-pick instead.
 			},
-			ft = "python",
-			opts = {},
-			keys = {
-				{ "<leader>pv", "<cmd>Python venv pick<cr>", desc = "python.nvim: pick venv" },
-				{ "<leader>pi", "<cmd>Python venv install<cr>", desc = "python.nvim: python venv install" },
-				{ "<leader>pd", "<cmd>Python dap<cr>", desc = "python.nvim: python run debug program" },
+			ft = "python", -- Load when opening Python files
+			keys = { { "<leader>pv", "<cmd>VenvSelect<cr>" } }, -- Open picker on keymap
+			opts = {
+				options = {}, -- plugin-wide options
+				search = {}, -- custom search definitions
 			},
 		},
 		-- -- Debug Adapter Protocol client implementation for Neovim
