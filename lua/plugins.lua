@@ -278,6 +278,7 @@ require("lazy").setup({
 			"lewis6991/gitsigns.nvim",
 		},
 
+		-- help selecting python venv on the fly
 		{
 			"linux-cultist/venv-selector.nvim",
 			dependencies = {
