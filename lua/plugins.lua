@@ -176,6 +176,7 @@ require("lazy").setup({
 			},
 		},
 
+		-- Dashboard to show in the welcome screen
 		{
 			"nvimdev/dashboard-nvim",
 			event = "VimEnter",
